@@ -1,0 +1,22 @@
+<h1>Select the items from below</h1>
+<hr>
+
+
+    
+
+
+<%= form_tag 'result' do %>
+
+    <% @items.each do |item| %>
+    
+        <%= check_box_tag("#{item.name}", value = "#{item.id}", checked = false, options = {:multiple => true}) %>
+    <% end %>
+    
+    <div><%= submit_tag 'Save' %></div>
+<% end %>
+
+
+
+<%#= form_for(@item, html: { multipart: true }) do |f| %>
+
+<%# end %>

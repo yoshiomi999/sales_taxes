@@ -15,10 +15,11 @@ ActiveRecord::Schema.define(version: 20160119155555) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "basic_tax",  default: false
-    t.boolean  "duty",       default: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.boolean  "basic_tax",                          default: false
+    t.boolean  "duty",                               default: false
+    t.decimal  "price",      precision: 8, scale: 2
   end
 
 end
