@@ -2,21 +2,18 @@
 <hr>
 
 
-    
-
 
 <%= form_tag 'result' do %>
 
     <% @items.each do |item| %>
-    
-        <%= check_box_tag("#{item.name}", value = "#{item.id}", checked = false, options = {:multiple => true}) %>
+    <div>
+        <%= check_box_tag("item_ids[]", value = "#{item.id}", checked = false) %>
+        <%= item.name %>
+        <%= item.price %>
+    </div>
     <% end %>
-    
+    <hr>
     <div><%= submit_tag 'Save' %></div>
 <% end %>
 
 
-
-<%#= form_for(@item, html: { multipart: true }) do |f| %>
-
-<%# end %>

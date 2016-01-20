@@ -2,9 +2,12 @@
 <hr>
 
 
+<% @orderd_items.each do |orderd_item| %>
+    <%= orderd_item[:name] %> <%= number_with_precision(orderd_item[:taxed_price], precision: 2) %></br>
 
+<% end %>
 
+Sales Taxes: <%= number_with_precision(@total_taxes, precision: 2)  %>
+<hr>
+Total: <%= number_with_precision(@total_price, precision: 2)  %>
 
-<%#= form_for(@item, html: { multipart: true }) do |f| %>
-
-<%# end %>
