@@ -1,19 +1,19 @@
 <h1>Select the items from below</h1>
-<hr>
-
 
 
 <%= form_tag 'result' do %>
-
-    <% @items.each do |item| %>
-    <div>
-        <%= check_box_tag("item_ids[]", value = "#{item.id}", checked = false) %>
-        <%= item.name %>
-        <%= item.price %>
-    </div>
-    <% end %>
     <hr>
-    <div><%= submit_tag 'Save' %></div>
+    <div class="content">
+        <% @items.each do |item| %>
+            <div class="item">
+                <div class="name"> <%= check_box_tag("item_ids[]", value = "#{item.id}", checked = false) %><%= item.name %></div>
+                <div class="price"><%= item.price %></div>
+            </div>
+        <% end %>
+    </div>
+    <hr>
+    
+    <div class="button"><%= submit_tag 'Save' %></div>
 <% end %>
 
 

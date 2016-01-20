@@ -1,3 +1,57 @@
 // Place all the styles related to the Items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body{
+    font-family:Helvetica, Arial;
+}
+
+h1{
+    text-align:center;
+    font-size:26px;
+}
+form{
+    width:360px;
+    margin:0 auto;
+}
+
+hr{
+    
+  border:none;
+  border-top:1px dotted gray;
+}
+
+.content{
+    width: 310px;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 2px;
+}
+
+
+.item{
+    overflow: hidden;
+    margin-bottom:12px;
+    font-size:16px;
+}
+.item .name{
+    float:left;
+}
+.item .price{
+    float:right;
+    font-weight:bold;
+}
+
+.button{
+    text-align:center;
+    margin-top:20px;
+}
+input[type="submit"]{
+    width:310px;
+    margin:0 auto;
+    height:36px;
+    background:#0071BC;
+    border:0;
+    font-size:16px;
+    color:white;
+}
