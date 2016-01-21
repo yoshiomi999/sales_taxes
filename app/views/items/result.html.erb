@@ -1,13 +1,22 @@
-<h1>Your order is:</h1>
-<hr>
-
-
-<% @orderd_items.each do |orderd_item| %>
-    <%= orderd_item[:name] %> <%= number_with_precision(orderd_item[:taxed_price], precision: 2) %></br>
-
-<% end %>
-
-Sales Taxes: <%= number_with_precision(@total_taxes, precision: 2)  %>
-<hr>
-Total: <%= number_with_precision(@total_price, precision: 2)  %>
+<h1>Your order is</h1>
+<div class="content2">
+    <hr>
+    
+    <div class="detail">
+        <% @orderd_items.each do |orderd_item| %>
+            <div class="item">
+                <div class="name"><%= orderd_item[:name] %></div>
+                <div class="price"><%= number_with_precision(orderd_item[:taxed_price], precision: 2) %></div>
+            </div>
+        <% end %>
+    </div>
+    
+    <hr>
+    <div class="detail">
+        <div class="total_price">Total: <span class="value"><%= number_with_precision(@total_price, precision: 2)  %></span></div>
+        <div class="total_taxes">(Sales taxes included: <span class="value"><%= number_with_precision(@total_taxes, precision: 2) %></span>)</div>
+        
+        <%= link_to "< Back", root_url, class:"btn_back" %>
+    </div>
+</div>
 
