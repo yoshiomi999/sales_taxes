@@ -52,10 +52,50 @@ class ItemsController < ApplicationController
             duty = original_price*0.05 # only duty
         end
         
-        sum_taxes = basic_tax+duty # sum basic tax & duty
-        taxed_price = original_price + sum_taxes # sum taxes + original price
+        # calculate the price with taxes
+        taxed_price = original_price + basic_tax + duty # original price + taxes 
+        taxed_price = arrange_price(taxed_price); # arrange the second deciaml place
         
-        return [taxed_price.round(2), sum_taxes.round(2)] # rounding up each valuse
+        # calculate the total taxes
+        sum_taxes = taxed_price - original_price # Sum taxes is not basic_tax + duty, becasue the second deciaml place is modified
+        sum_taxes = sum_taxes.round(2) # rounding up taxes valuse
+        
+        return [taxed_price, sum_taxes]
+    end
+  
+  
+    # modify the second deciaml place of price: example 10.01-10.04 become 10.05, but over 10.05 is same value
+    def arrange_price(price)
+      price = price.round(2) # rounding up
+
+      # process to divide at decimal point
+      str_price = price.to_s 
+      str_price_arr = str_price.split(".")
+      
+      # ex 10.03 becomes "10" and "03"
+      upper_decimal=str_price_arr.first # upper decimal part: ex "10"
+      under_decimal=str_price_arr.last # under decimal part: ex "03"
+      
+      # 10 with round(2) return 10.0(not 10.00). only when the value "XX.01 - XX.99" do this process  
+      if under_decimal.length == 2
+        
+        # splite the under decimal value ex ".03"
+        first_decimal_place=under_decimal[0,1] # first: "0"
+        second_decimal_place=under_decimal[-1,1] # second "3"
+        
+        # "01" - "04" become "05" 
+        if second_decimal_place.to_i <= 4
+            second_decimal_place="5"
+            
+            # rebuild the price. ex "10" + "." + "0" + "5"
+            str_price = upper_decimal+"."+ first_decimal_place + second_decimal_place
+            
+            # format to bigDeciaml
+            price=str_price.to_d 
+        end
+        
+      end
+      return price
     end
   
   
