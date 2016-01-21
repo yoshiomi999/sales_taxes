@@ -2,8 +2,9 @@ require 'test_helper'
 
 class ItemsControllerTest < ActionController::TestCase
   test "should get new" do
-    get :new
+    get :home
     assert_response :success
+    
   end
 
 end
